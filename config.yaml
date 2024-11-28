@@ -1,0 +1,35 @@
+ctransformers:
+  model_path:
+    small: "./models/ggml-vistral-7B-chat-q5_1.gguf"
+    large:  "./models/ggml-vistral-7B-chat-q5_1.gguf"
+
+  model_type: "mistral"
+  model_config: 
+    'max_new_tokens': 256
+    'temperature' : 0.2
+    'context_length': 2048
+    'gpu_layers' : 0 # 32 to put all mistral layers on GPU, might differ for other models
+    'threads' : -1
+
+chat_config:
+  chat_memory_length: 2
+  number_of_retrieved_documents: 3
+
+llava_model:
+  llava_model_path: "./models/llava/llava_ggml-model-q5_k.gguf"
+  clip_model_path: "./models/llava/mmproj-model-f16.gguf"
+  
+pdf_text_splitter:
+  chunk_size: 1024 # number of characters 1024 roughly equels 256 tokens
+  overlap: 50
+  separators: ["\n", "\n\n"]
+
+whisper_model: "vinai/PhoWhisper-small"
+
+embeddings_path: "BAAI/bge-m3"
+
+chromadb:
+  chromadb_path: "chroma_db"
+  collection_name: "pdfs"
+
+chat_sessions_database_path: "./chat_sessions/chat_sessions.db"
